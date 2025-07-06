@@ -27,6 +27,24 @@ This repository contains the Solidity smart contract powering the J832 Protocol.
 
 npm install
 
+const hre = require("hardhat");
+
+async function main() {
+  const [deployer] = await hre.ethers.getSigners();
+  console.log("Deploying contract with the account:", deployer.address);
+
+  const J832Protocol = await hre.ethers.getContractFactory("J832Protocol");
+  const j832 = await J832Protocol.deploy();
+  await j832.waitForDeployment();  
+
+  console.log("J832Protocol deployed to:", await j832.getAddress());
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+});
+
 
 ## contracts/ # Solidity source code
 npx hardhat compile
@@ -36,24 +54,32 @@ npx hardhat test
 
 test/ # Unit tests  
 
-## abi/ # ABI JSON (optional, generated after compile)
-artifacts/contracts/J832Protocol.sol/J832Protocol.json
+## abi/ # ABI JSON 
+The ABI is auto-generated after compiling the contract.  
+You can find it at `artifacts/contracts/J832Protocol.sol/J832Protocol.json`  
+or copy it to `/abi/` for easy SDK or front-end integration.
+
 
 ## Contract Features
-registerChange — Log an action/change with data and cryptographic signature
 
-createResource — Create a new resource/entity on-chain
+- **registerChange** — Log an action/change with data and cryptographic signature.
+- **createResource** — Create a new resource/entity on-chain.
+- **addAdmin / removeAdmin** — Manage multi-admin access and permissions.
+- **getChanges** — Retrieve audit logs for a resource.
 
-addAdmin / removeAdmin — Manage multi-admin access and permissions
-
-getChanges — Retrieve audit logs for a resource
 
 ## Security & Best Practices
-Do not commit or expose any private keys or sensitive info in this repository.
 
-Follow Solidity best practices.
+- **Never commit or expose private keys, .env files, or sensitive data in this repository.**
+- Always deploy to a testnet before mainnet.
+- Review and test all contract logic carefully before production use.
+- Follow [Solidity security best practices](https://docs.openzeppelin.com/contracts/4.x/api/access).
 
-Always test on a testnet before deploying to mainnet.
+If you find a vulnerability or issue, please open an issue or contact the maintainer.
+
+## Related Repositories
+
+- [J832 SDK (TypeScript)](https://github.com/mfelizweb/j832Protocol) — Use this SDK to interact with J832Protocol contracts from Node.js and backend applications.
 
 
 ## License
