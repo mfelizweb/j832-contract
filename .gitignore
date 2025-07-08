@@ -1,4 +1,21 @@
+# Environment files
 .env
+*.env
+
+# Node modules
 node_modules/
+
+# Solidity build outputs (Hardhat/Foundry/Truffle)
 artifacts/
 cache/
+out/
+build/
+coverage/
+
+# Logs
+*.log
+
+# Personal/IDE
+.vscode/
+.idea/
+.DS_Store

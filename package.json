@@ -1,9 +1,10 @@
-{
+  {
   "name": "j832-contract",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha ./tests/**/*.test.js"
   },
   "keywords": [],
   "author": "",
@@ -26,6 +27,8 @@
     "ethers": "^6.14.4",
     "hardhat": "^2.25.0",
     "hardhat-gas-reporter": "^2.3.0",
+    "mocha": "^11.7.1",
+    "nyc": "^17.1.0",
     "solidity-coverage": "^0.8.16",
     "solidity-docgen": "^0.6.0-beta.36",
     "ts-node": "^10.9.2",
@@ -111,6 +114,7 @@
     "is-number": "^7.0.0",
     "is-plain-obj": "^2.1.0",
     "is-unicode-supported": "^0.1.0",
+    "j832": "^1.0.2",
     "js-sha3": "^0.8.0",
     "js-yaml": "^4.1.0",
     "json-stream-stringify": "^3.1.6",
@@ -191,5 +195,6 @@
     "yargs-unparser": "^2.0.0",
     "yocto-queue": "^0.1.0"
   },
-  "description": ""
+
+  "description": "Smart contract for the J832 Protocol — providing enterprise-grade blockchain audit trails, tamper-proof change logs, and multi-admin governance for any application or system."
 }
